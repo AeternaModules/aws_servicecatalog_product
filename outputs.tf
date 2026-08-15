@@ -36,7 +36,7 @@ output "servicecatalog_products_owner" {
 }
 output "servicecatalog_products_provisioning_artifact_parameters" {
   description = "Map of provisioning_artifact_parameters values across all servicecatalog_products, keyed the same as var.servicecatalog_products"
-  value       = { for k, v in aws_servicecatalog_product.servicecatalog_products : k => v.provisioning_artifact_parameters if v.provisioning_artifact_parameters != null && length(v.provisioning_artifact_parameters) > 0 }
+  value       = { for k, v in aws_servicecatalog_product.servicecatalog_products : k => one(v.provisioning_artifact_parameters) if v.provisioning_artifact_parameters != null && length(v.provisioning_artifact_parameters) > 0 }
 }
 output "servicecatalog_products_region" {
   description = "Map of region values across all servicecatalog_products, keyed the same as var.servicecatalog_products"
